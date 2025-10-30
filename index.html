@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just Refyned Lab</title>
+<style>
+  body, div, h1, h2, p, a, button, input, textarea {
+    margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Header */
+  header {
+    display: flex; justify-content: flex-end; padding: 20px 40px; background-color: #333;
+  }
+  header a {
+    color: #fff; text-decoration: none; margin-left: 30px; font-weight: bold; transition: 0.3s;
+  }
+  header a:hover { color: #f39c12; }
+
+  /* Hero */
+  .hero {
+    height: 80vh; background-color: #444; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff;
+  }
+  .hero h1 { font-size: 3em; margin-bottom: 20px; }
+  .hero button {
+    padding: 15px 40px; font-size: 1.2em; background-color: #f39c12; border: none; border-radius: 8px; cursor: pointer; color: #fff; transition: 0.3s;
+  }
+  .hero button:hover { background-color: #e67e22; }
+
+  /* Sections */
+  section { padding: 60px 20px; text-align: center; }
+  section h2 { font-size: 2em; margin-bottom: 30px; }
+  section p { max-width: 600px; margin: 0 auto; font-size: 1.1em; line-height: 1.6; }
+
+  /* Services */
+  .services { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+  .service-card {
+    background-color: #fff; padding: 20px; width: 220px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+  /* Contact */
+  .contact-form { max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+  .contact-form input, .contact-form textarea { padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em; }
+  .contact-form button { padding: 12px; border: none; border-radius: 6px; background-color: #f39c12; color: #fff; font-size: 1em; cursor: pointer; transition: 0.3s; }
+  .contact-form button:hover { background-color: #e67e22; }
+
+  /* Footer */
+  footer { background-color: #333; color: #fff; text-align: center; padding: 20px 0; margin-top: 20px; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .services { flex-direction: column; align-items: center; }
+    .hero h1 { font-size: 2.2em; }
+  }
+</style>
+</head>
+<body>
+
+<header class="fade-in">
+  <a href="#about">About Us</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</header>
+
+<div class="hero fade-in">
+  <h1>Just Refyned Lab</h1>
+  <button onclick="location.href='#services'">Book Now</button>
+</div>
+
+<section id="about" class="fade-in">
+  <h2>About Us</h2>
+  <p>At Just Refyned Lab, we specialize in professional car detailing that brings out the best in your vehicle. From thorough interior cleaning to expert exterior polishing and ceramic coatings, we provide services designed to protect, enhance, and maintain your car’s beauty. Your satisfaction and your car’s shine are our top priorities.</p>
+</section>
+
+<section id="services" class="fade-in">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-card fade-in">Exterior Detailing</div>
+    <div class="service-card fade-in">Interior Detailing</div>
+    <div class="service-card fade-in">Ceramic Coating</div>
+  </div>
+</section>
+
+<section id="contact" class="fade-in">
+  <h2>Contact Us</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea rows="5" placeholder="Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<footer class="fade-in">
+  &copy; 2025 Just Refyned Lab. All rights reserved.
+</footer>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const options = { threshold: 0.2 };
+const appearOnScroll = new IntersectionObserver(function(entries, observer){
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, options);
+faders.forEach(fader => { appearOnScroll.observe(fader); });
+</script>
+
+</body>
+</html>
